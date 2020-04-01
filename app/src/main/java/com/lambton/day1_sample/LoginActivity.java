@@ -27,13 +27,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnClickMe;
     private Switch rememberMe;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("message");
+    DatabaseReference myRef = database.getReference("Logins");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         intials();
-        myRef.setValue("Hello, World!");
+
 
         btnClickMe.setOnClickListener(this);
         btnClickMe.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     homeIntent.putExtra("Name","Anmol");
                     homeIntent.putExtra("Age",23);
                     startActivity(homeIntent);
+                    writeNewUser("user_1",userName,password);
                     rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -118,5 +119,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
         AlertDialog homeAlert = builder.create();
         homeAlert.show();
+    }
+
+    // write data to Firebase
+    public void writeNewUser(String userId, String userName, String password){
+
+        LoginCredentials user = new LoginCredentials(userName,password);
+        myRef.child("Users").child(userId).setValue(user);
     }
 }
