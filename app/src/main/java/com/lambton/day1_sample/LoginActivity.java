@@ -1,14 +1,18 @@
 package com.lambton.day1_sample;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +22,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public EditText enterUserName;
     public EditText enterPass;
     private Button btnClickMe;
-    private TextView setLabel;
+    private Switch rememberMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,25 +30,35 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         intials();
 
-btnClickMe.setOnClickListener(this);
+        btnClickMe.setOnClickListener(this);
         btnClickMe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                String userName = enterUserName.getText().toString();
-                String password = enterPass.getText().toString();
+                final String userName = enterUserName.getText().toString();
+                final String password = enterPass.getText().toString();
 
                 if (userName.equals("admin@123") && password.equals("s3cr3t"))
                 {
                     Log.d("NAME", password);
                     Toast.makeText(LoginActivity.this,"Success!",Toast.LENGTH_SHORT).show();
                     Intent homeIntent = new Intent(LoginActivity.this,HomeActivity.class);
+                    homeIntent.putExtra("Name","Anmol");
+                    homeIntent.putExtra("Age",23);
                     startActivity(homeIntent);
-
+                    rememberMe.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @Override
+                        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                            if (isChecked == true){
+                                enterUserName.setText(userName);
+                                enterPass.setText(password);
+                            }
+                        }
+                    });
                 }else {
 
-                    Toast.makeText(LoginActivity.this,"Failure!",Toast.LENGTH_SHORT).show();
+                    loginAlert();
 
                 }
 
@@ -65,7 +79,39 @@ btnClickMe.setOnClickListener(this);
         enterUserName = findViewById(R.id.loginUserName);
         enterPass = findViewById(R.id.loginPassword);
         btnClickMe = findViewById(R.id.loginButton);
+        rememberMe = findViewById(R.id.rememberMeSwitch);
         ActionBar loginBar = getSupportActionBar();
         loginBar.hide();
+
+    }
+    public void loginAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Error");
+        builder.setIcon(R.drawable.logo_small_round);
+        builder.setMessage("User ID Password Invalid");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(LoginActivity.this,"Positive",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(LoginActivity.this,"Negative",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        builder.setNeutralButton("Ignore", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(LoginActivity.this,"Neutral",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog homeAlert = builder.create();
+        homeAlert.show();
     }
 }

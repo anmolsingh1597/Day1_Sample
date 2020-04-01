@@ -2,6 +2,7 @@
 <resources>
     <dimen name="dp_16">16dp</dimen>
     <dimen name="labelFontSize">16sp</dimen>
+    <dimen name="largeLabelSize">26sp</dimen>
     <dimen name="spacing_large">15dp</dimen>
     <dimen name="spacing_mlarge">20dp</dimen>
     <dimen name="spacing_xlarge">35dp</dimen>

@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Enter User Name"
-                android:textColor="@color/blue_grey_500"
-                android:inputType="textPersonName" />
+                android:inputType="textWebEmailAddress|textEmailAddress"
+                android:textColor="@color/blue_grey_500" />
 
             <View
                 android:layout_width="0dp"
@@ -64,26 +64,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:textColor="@color/blue_grey_500"
                 android:hint="Enter Password"
-                android:inputType="textPersonName" />
+                android:inputType="textPassword"
+                android:textColor="@color/blue_grey_500" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="@dimen/spacing_middle" />
 
-            <TextView
-                android:id="@+id/forgot_password"
+            <Switch
+                android:id="@+id/rememberMeSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|end"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:clickable="true"
-                android:text="Forgot Password?"
+                android:text="Remember Me "
                 android:textAlignment= "center"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:textColor="@color/blue_grey_400"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                />
 
             <View
                 android:layout_width="0dp"

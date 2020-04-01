@@ -26,4 +26,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeViewImage" />
 
+    <Button
+        android:id="@+id/homeAlertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Alert"
+        android:onClick="homeAlertButton"
+        android:background="@drawable/btn_rounded_green_300"
+        android:textAllCaps="false"
+        android:textColor="@color/blue_grey_900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeViewImage" />
+
+    <TextView
+        android:id="@+id/homeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="TextView"
+        android:textColor="@color/blue_grey_500"
+        android:textSize="@dimen/largeLabelSize"
+        app:layout_constraintBottom_toTopOf="@+id/homeViewImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
