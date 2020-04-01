@@ -16,6 +16,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -23,12 +26,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public EditText enterPass;
     private Button btnClickMe;
     private Switch rememberMe;
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("message");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         intials();
+        myRef.setValue("Hello, World!");
 
         btnClickMe.setOnClickListener(this);
         btnClickMe.setOnClickListener(new View.OnClickListener() {
