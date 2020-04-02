@@ -3,4 +3,11 @@
     <string name="actionBarLabel">Test</string>
     <string name="Hello_World">Hey world!</string>
     <string name="title">Welcome All</string>
+    <array name="designatedArray">
+        <item>Manager</item>
+        <item>CEO</item>
+        <item>Student</item>
+        <item>Tutor</item>
+        <item>Staff</item>
+    </array>
 </resources>
