@@ -2,16 +2,19 @@ package com.lambton.day1_sample;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MaterialActivity extends AppCompatActivity {
 
     private SeekBar volumeSeekBar;
     private TextView seekText;
     private RatingBar userRating;
+    private SharedPreferences myFetchedValue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +25,12 @@ public class MaterialActivity extends AppCompatActivity {
         volumeSeekBar = findViewById(R.id.volumeSeekBar);
         seekText = findViewById(R.id.seekBarText);
         userRating = findViewById(R.id.userRatingBar);
+        myFetchedValue = getSharedPreferences("MyPref", MODE_PRIVATE);
+        String name = myFetchedValue.getString("keyName","");
+        Toast.makeText(MaterialActivity.this, name, Toast.LENGTH_SHORT).show();
         seekBarAction();
         ratingBarAction();
+        sharedPreferences();
     }
 
     // seek bar action
@@ -57,5 +64,8 @@ public class MaterialActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void sharedPreferences(){
+
     }
 }
